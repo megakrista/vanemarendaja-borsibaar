@@ -543,121 +543,121 @@ databaseChangeLog:
         # Insert beer products (using SQL to find category by name)
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Pilsner Draft', 'Classic pilsner beer on tap', 4.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Pilsner Draft', 'Classic pilsner beer on tap', 4.50, 2.50, 6.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Beer';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'IPA', 'Hoppy India Pale Ale', 5.20
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'IPA', 'Hoppy India Pale Ale', 5.20, 3.20, 7.20
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Beer';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Wheat Beer', 'Light and refreshing wheat beer', 4.80
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Wheat Beer', 'Light and refreshing wheat beer', 4.80, 2.80, 6.80
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Beer';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Stout', 'Rich and creamy dark stout', 5.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Stout', 'Rich and creamy dark stout', 5.50, 3.50, 7.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Beer';
 
         # Insert wine products
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'House Red Wine', 'Smooth house red wine by the glass', 6.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'House Red Wine', 'Smooth house red wine by the glass', 6.00, 4.00, 8.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Wine';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'House White Wine', 'Crisp house white wine by the glass', 6.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'House White Wine', 'Crisp house white wine by the glass', 6.00, 4.00, 8.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Wine';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Prosecco', 'Italian sparkling wine', 7.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Prosecco', 'Italian sparkling wine', 7.50, 5.50, 9.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Wine';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Premium Cabernet', 'Premium Cabernet Sauvignon', 9.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Premium Cabernet', 'Premium Cabernet Sauvignon', 9.50, 7.50, 11.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Wine';
 
         # Insert spirits products
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Vodka Shot', 'Premium vodka shot', 3.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Vodka Shot', 'Premium vodka shot', 3.50, 1.50, 5.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Spirits';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Whiskey', 'Single malt whiskey', 8.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Whiskey', 'Single malt whiskey', 8.00, 6.00, 10.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Spirits';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Gin', 'Premium London dry gin', 6.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Gin', 'Premium London dry gin', 6.50, 4.50, 8.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Spirits';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Rum', 'Caribbean white rum', 6.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Rum', 'Caribbean white rum', 6.00, 4.00, 8.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Spirits';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Tequila', '100% agave tequila', 7.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Tequila', '100% agave tequila', 7.00, 5.00, 9.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Spirits';
 
         # Insert cocktail products
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Mojito', 'Classic Cuban cocktail with mint and lime', 8.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Mojito', 'Classic Cuban cocktail with mint and lime', 8.50, 6.50, 10.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Cocktails';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Old Fashioned', 'Whiskey cocktail with bitters and orange', 10.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Old Fashioned', 'Whiskey cocktail with bitters and orange', 10.00, 8.00, 12.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Cocktails';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Margarita', 'Tequila cocktail with lime and triple sec', 9.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Margarita', 'Tequila cocktail with lime and triple sec', 9.00, 7.00, 11.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Cocktails';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Gin & Tonic', 'Classic gin and tonic with lime', 7.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Gin & Tonic', 'Classic gin and tonic with lime', 7.50, 5.50, 9.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Cocktails';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Moscow Mule', 'Vodka with ginger beer and lime', 8.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Moscow Mule', 'Vodka with ginger beer and lime', 8.00, 6.00, 10.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Cocktails';
 
         # Insert non-alcoholic products
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Coca-Cola', 'Classic cola soft drink', 3.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Coca-Cola', 'Classic cola soft drink', 3.00, 1.00, 5.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Non-Alcoholic';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Orange Juice', 'Fresh orange juice', 3.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Orange Juice', 'Fresh orange juice', 3.50, 1.50, 5.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Non-Alcoholic';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Sparkling Water', 'Premium sparkling mineral water', 2.50
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Sparkling Water', 'Premium sparkling mineral water', 2.50, 0.50, 4.50
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Non-Alcoholic';
         - sql:
             sql: >
-              INSERT INTO products (organization_id, category_id, name, description, base_price)
-              SELECT 2, c.id, 'Coffee', 'Freshly brewed coffee', 3.00
+              INSERT INTO products (organization_id, category_id, name, description, base_price, min_price, max_price)
+              SELECT 2, c.id, 'Coffee', 'Freshly brewed coffee', 3.00, 1.00, 5.00
               FROM categories c WHERE c.organization_id = 2 AND c.name = 'Non-Alcoholic';
 
         # Insert inventory records for all products (using SQL to find product by name)
