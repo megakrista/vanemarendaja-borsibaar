@@ -1,0 +1,107 @@
+package com.borsibaar.controller;
+
+import com.borsibaar.dto.*;
+import com.borsibaar.entity.Role;
+import com.borsibaar.entity.User;
+import com.borsibaar.service.InventoryService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.List;
+import java.util.UUID;
+
+import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@SpringBootTest
+@AutoConfigureMockMvc(addFilters = false)
+class InventoryControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @MockitoBean
+    private InventoryService inventoryService;
+
+    @AfterEach
+    void tearDown() {
+        SecurityContextHolder.clearContext();
+    }
+
+    @Test
+    void getOrganizationInventory_UsesUserOrg_WhenNoQueryParam() throws Exception {
+        User user = userWithOrg(42L, "USER");
+        setAuth(user);
+
+        when(inventoryService.getByOrganization(42L, null)).thenReturn(List.of());
+        mockMvc.perform(get("/api/inventory"))
+                .andExpect(status().isOk());
+
+        verify(inventoryService).getByOrganization(42L, null);
+    }
+
+    @Test
+    void addStock_ReturnsCreated() throws Exception {
+        User user = userWithOrg(1L, "USER");
+        setAuth(user);
+
+        AddStockRequestDto req = new AddStockRequestDto(10L, new BigDecimal("5"), "note");
+        InventoryResponseDto resp = new InventoryResponseDto(
+                100L,
+                1L,
+                10L,
+                "Cola",
+                new BigDecimal("15"),
+                new BigDecimal("2.50"),
+                new BigDecimal("2.00"),
+                new BigDecimal("2.00"),
+                new BigDecimal("5.00"),
+                OffsetDateTime.now().toString());
+        when(inventoryService.addStock(any(AddStockRequestDto.class), any(UUID.class), eq(1L))).thenReturn(resp);
+
+        mockMvc.perform(post("/api/inventory/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(req)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id").value(100))
+                .andExpect(jsonPath("$.productName").value("Cola"));
+
+        verify(inventoryService).addStock(any(AddStockRequestDto.class), any(UUID.class), eq(1L));
+    }
+
+    private static User userWithOrg(Long orgId, String roleName) {
+        Role role = Role.builder().id(1L).name(roleName).build();
+        return User.builder()
+                .id(UUID.randomUUID())
+                .email("user@test.com")
+                .name("Test User")
+                .organizationId(orgId)
+                .role(role)
+                .build();
+    }
+
+    private static void setAuth(User user) {
+        Authentication auth = new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
+        SecurityContextHolder.getContext().setAuthentication(auth);
+    }
+}
