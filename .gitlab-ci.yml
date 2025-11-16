@@ -6,7 +6,7 @@ variables:
   SSH_USER: "ubuntu"
   SERVER_IP: "193.40.157.19"
   DEPLOY_PATH: "/srv/borsibaar"
-  DOCKER_COMPOSE_FILE: "docker-compose.yaml"
+  DOCKER_COMPOSE_FILE: "docker-compose.prod.yaml"
 
 before_script:
   - 'which ssh-agent || apk add --no-cache openssh-client'
