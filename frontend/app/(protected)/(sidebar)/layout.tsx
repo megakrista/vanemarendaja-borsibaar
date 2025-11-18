@@ -15,11 +15,9 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   // Hide sidebar completely on POS ID pages (e.g., /pos/123)
   const isPOSIDPage = pathname?.match(/^\/pos\/[^/]+$/);
-  // Close sidebar by default on other POS pages
-  const isPOSPage = pathname?.startsWith("/pos");
-  
+
   return (
-    <SidebarProvider defaultOpen={!isPOSPage}>
+    <SidebarProvider>
       {!isPOSIDPage && <AppSidebar />}
       <SidebarInset>
         {!isPOSIDPage && (
